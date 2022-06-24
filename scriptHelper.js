@@ -18,18 +18,18 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-    if (testInput ===''){
-        return 'Empty'
+    if (testInput ===' '){
+        return 'Empty';
     } else if (isNaN(testInput)){
-        return 'Not a number'
-    } else if (Number(testInput)){
-        return 'Is a number' 
+        return 'Not a number';
+    } else if (isNaN(Number(testInput)) == false){
+        return 'Is a number'; 
     }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let form = document.querySelector('testForm');
-   form.addEventListener('formSubmit', function(event){
+   form.addEventListener('submit', function(event){
 
     if (validateInput(pilot)=='Empty' || validateInput(copilot)=='Empty' || validateInput(fuelLevel)=='Empty' || validateInput(cargoLevel)=='Empty'){
         alert('All fields are required!');
@@ -41,8 +41,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         alert('Input must be a number!');
         event.preventDefault();
     } else {
-    document.getElementById('pilotStatus').innerHTML = `Pilot ${pilotNameInput.value} Ready`
-    document.getElementById('copilotStatus'.innetHTML) = `Co-pilot ${copilotNameInput.value} Ready`
+        document.getElementById('pilotStatus').innerHTML = `Pilot ${pilot} Ready`
+        document.getElementById('copilotStatus'.innetHTML) = `Co-pilot ${copilot} Ready`
+
 
         if (fuelLevel.value < 10000){
             document.getElementById('faultyItems').style.visibility = 'visible';
